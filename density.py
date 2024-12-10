@@ -47,15 +47,21 @@ if url:
     text = get_page_text(url)
 
     if text:
-        # Generate n-grams for 2, 3, and 4 words
+        # Generate n-grams for 2, 3, 4, 5, 6, and 7 words
         bigrams = get_ngrams(text, 2)
         trigrams = get_ngrams(text, 3)
         fourgrams = get_ngrams(text, 4)
+        fivegrams = get_ngrams(text, 5)
+        sixgrams = get_ngrams(text, 6)
+        sevengrams = get_ngrams(text, 7)
 
         # Filter n-grams with count > 1
         bigrams = {phrase: count for phrase, count in bigrams.items() if count > 1}
         trigrams = {phrase: count for phrase, count in trigrams.items() if count > 1}
         fourgrams = {phrase: count for phrase, count in fourgrams.items() if count > 1}
+        fivegrams = {phrase: count for phrase, count in fivegrams.items() if count > 1}
+        sixgrams = {phrase: count for phrase, count in sixgrams.items() if count > 1}
+        sevengrams = {phrase: count for phrase, count in sevengrams.items() if count > 1}
 
         # Display results
         st.subheader("2-word Phrases (Bigrams)")
@@ -75,6 +81,28 @@ if url:
             st.write(fourgrams)
         else:
             st.write("No repeated fourgrams found.")
+
+        st.subheader("5-word Phrases (Fivegrams)")
+        if fivegrams:
+            st.write(fivegrams)
+
+
+
+
+        else:
+            st.write("No repeated fivegrams found.")
+
+        st.subheader("6-word Phrases (Sixgrams)")
+        if sixgrams:
+            st.write(sixgrams)
+        else:
+            st.write("No repeated sixgrams found.")
+
+        st.subheader("7-word Phrases (Sevengrams)")
+        if sevengrams:
+            st.write(sevengrams)
+        else:
+            st.write("No repeated sevengrams found.")
 
         # Additional Keyword Analysis
         keyword = st.text_input("Enter a specific keyword/phrase to analyze its density (optional)", "")
